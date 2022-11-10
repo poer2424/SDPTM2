@@ -6,7 +6,6 @@ import java.util.Set;
 
 import engine.Cooldown;
 import engine.Core;
-import engine.Inventory;
 import engine.DrawManager.SpriteType;
 import engine.Sound;
 
@@ -51,8 +50,6 @@ public class Ship extends Entity {
 	 * @param positionY
 	 *                  Initial position of the ship in the Y axis.
 	 */
-
-	private Color baseColor=Color.green;
 
 	public Ship(final int positionX, final int positionY, Color color) {
 		super(positionX, positionY, 13 * 2, 8 * 2, color);
@@ -119,13 +116,6 @@ public class Ship extends Entity {
 	 */
 	private Color[] rainbowEffect = {Color.RED, Color.ORANGE, Color.YELLOW, Color.green, Color.blue, new Color(0, 0, 128), new Color(139, 0, 255)};
 	public final void update() {
-
-		switch (Inventory.getcurrentship()) {
-			case 1000 -> setBaseColor(Color.GREEN);
-			case 1001 -> setBaseColor(Color.RED);
-			case 1002 -> setBaseColor(Color.BLUE);
-		}
-
 		// Item acquired additional image
 		if (this.itemCooldown.checkFinished()){
 			this.item_number = 0;
@@ -133,11 +123,11 @@ public class Ship extends Entity {
 		if (this.isDestroyed()) {
 			frameCnt++;
 			if (frameCnt % (destructCool * 0.01) == 0) {
-				if (getColor() == baseColor) {
+				if (getColor() == Color.GREEN) {
 					this.spriteType = SpriteType.ShipDestroyed;
 					setColor(Color.red);
 				} else {
-					setColor(baseColor);
+					setColor(Color.GREEN);
 					this.spriteType = SpriteType.Ship;
 				}
 			}
@@ -154,13 +144,9 @@ public class Ship extends Entity {
 			}
 		} else {
 			frameCnt = 0;
-			setColor(baseColor);
+			setColor(Color.GREEN);
 			this.spriteType = SpriteType.Ship;
 		}
-	}
-
-	public final void setBaseColor(Color newColor){
-		baseColor=newColor;
 	}
 	public final void getItem() {
 		this.getItem = true;
