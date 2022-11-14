@@ -229,7 +229,7 @@ public final class FileManager {
 
 		} catch (FileNotFoundException e) {
 			// loads default if there's no user scores.
-			logger.info("Loading default high scores.");
+			//logger.info("Loading default high scores.");
 			highScores = loadDefaultHighScores();
 		} finally {
 			if (bufferedReader != null)
