@@ -30,19 +30,19 @@ public class SmallPet extends Entity {
 	private Cooldown destructionCooldown;
 	/** Item acquire effect duration time. */
 	private Cooldown itemCooldown;
-	/** Movement of the ship for each unit of time. */
+	/** Movement of the smallpet for each unit of time. */
 	private int destructCool = 300;
 
 	private int frameCnt = 0;
 
 	private boolean getItem=false;
 	/**
-	 * Constructor, establishes the ship's properties.
+	 * Constructor, establishes the smallpet's properties.
 	 * 
 	 * @param positionX
-	 *                  Initial position of the ship in the X axis.
+	 *                  Initial position of the smallpet in the X axis.
 	 * @param positionY
-	 *                  Initial position of the ship in the Y axis.
+	 *                  Initial position of the smallpet in the Y axis.
 	 */
 
 	private Color baseColor=Color.green;
@@ -111,43 +111,11 @@ public class SmallPet extends Entity {
 	private Color[] rainbowEffect = {Color.RED, Color.ORANGE, Color.YELLOW, Color.green, Color.blue, new Color(0, 0, 128), new Color(139, 0, 255)};
 	public final void update() {
 
-		switch (Inventory.getcurrentship()) {
-			case 1000 -> setBaseColor(Color.GREEN);
-			case 1001 -> setBaseColor(Color.RED);
-			case 1002 -> setBaseColor(Color.BLUE);
-		}
+		setBaseColor(Color.green);
 
-		// Item acquired additional image
-		if (this.itemCooldown.checkFinished()){
-			this.item_number = 0;
-		}
-		if (this.isDestroyed()) {
-			frameCnt++;
-			if (frameCnt % (destructCool * 0.01) == 0) {
-				if (getColor() == baseColor) {
-					this.spriteType = SpriteType.ShipDestroyed;
-					setColor(Color.red);
-				} else {
-					setColor(baseColor);
-					this.spriteType = SpriteType.Ship;
-				}
-			}
-		} else if (getItem) {
-			if (frameCnt >= 30) {
-				getItem = false;
-			} else {
-				try {
-					this.setColor(rainbowEffect[Arrays.asList(rainbowEffect).indexOf(this.getColor()) + 1]);
-				} catch (ArrayIndexOutOfBoundsException e) {
-					this.setColor(rainbowEffect[0]);
-				}
-				frameCnt++;
-			}
-		} else {
-			frameCnt = 0;
-			setColor(baseColor);
-			this.spriteType = SpriteType.Ship;
-		}
+		frameCnt = 0;
+		setColor(baseColor);
+		this.spriteType = SpriteType.SmallPet;
 	}
 
 	public final void setBaseColor(Color newColor){

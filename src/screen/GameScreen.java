@@ -71,6 +71,10 @@ public class GameScreen extends Screen {
 	 */
 	private Ship ship;
 	/**
+	 * Player's smallpet.
+	 */
+	private SmallPet SmallPet;
+	/**
 	 * Player's ship width.
 	 */
 	private int shipWidth = 13*2;
@@ -181,6 +185,7 @@ public class GameScreen extends Screen {
 			case 1001 -> this.ship = new Ship(this.width / 2, this.height - 30, Color.RED);
 			case 1002 -> this.ship = new Ship(this.width / 2, this.height - 30, Color.BLUE);
 		}
+		this.SmallPet = new SmallPet(this.width / 2 + 40, this.height - 30, Color.GREEN);
 
 		// Appears each 10-30 seconds.
 		this.enemyShipSpecialCooldown = Core.getVariableCooldown(
@@ -232,15 +237,25 @@ public class GameScreen extends Screen {
 				boolean isLeftBorder_ship = this.ship.getPositionX()
 						- this.ship.getSpeed() < 1;
 
-				if (moveRight && !isRightBorder_ship) {
+				boolean isRightBorder_smallpet = this.SmallPet.getPositionX()
+						+ this.SmallPet.getWidth() + this.SmallPet.getSpeed() > this.width - 1;
+				boolean isLeftBorder_smallpet = this.SmallPet.getPositionX()
+						- this.SmallPet.getSpeed() < 1;
+
+
+				if (moveRight && !isRightBorder_ship && !isRightBorder_smallpet){
 					this.ship.moveRight();
+					this.SmallPet.moveRight();
 				}
-				if (moveLeft && !isLeftBorder_ship) {
+				if (moveLeft && !isLeftBorder_ship && !isLeftBorder_smallpet) {
 					this.ship.moveLeft();
+					this.SmallPet.moveLeft();
 				}
 				if (inputManager.isKeyDown(KeyEvent.VK_SPACE))
 					if (this.ship.shoot(this.bullets))
 						this.bulletsShot++;
+				if (this.SmallPet.shoot(this.bullets))
+					this.bulletsShot++;
 
 				if (moveLeft)
 					ship.animctr = 2;
@@ -270,6 +285,7 @@ public class GameScreen extends Screen {
 			}
 
 			this.ship.update();
+			this.SmallPet.update();
 			this.enemyShipFormation.update();
 
 			switch (Core.getDiff()){
