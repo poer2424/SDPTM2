@@ -113,6 +113,7 @@ public class SmallPet extends Entity {
 
 		setBaseColor(Color.green);
 
+
 		frameCnt = 0;
 		setColor(baseColor);
 		this.spriteType = SpriteType.SmallPet;
