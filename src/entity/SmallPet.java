@@ -48,7 +48,7 @@ public class SmallPet extends Entity {
 	private Color baseColor=Color.green;
 
 	public SmallPet(final int positionX, final int positionY, Color color) {
-		super(positionX, positionY, 9 * 2, 4 * 2, color);
+		super(positionX, positionY, 11 * 2, 4 * 2, color);
 		imagep = false;
 		this.spriteType = SpriteType.SmallPet;
 		
