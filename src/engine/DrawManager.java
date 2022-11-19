@@ -413,9 +413,9 @@ public final class DrawManager {
 		
 		Ship dummyShip = null;
 		switch (Inventory.getcurrentship()) {
-			case 1000 -> dummyShip = new Ship(0, 0, Color.GREEN);
-			case 1001 -> dummyShip = new Ship(0, 0, Color.RED);
-			case 1002 -> dummyShip = new Ship(0, 0, Color.BLUE);
+			case 1000 : dummyShip = new Ship(0, 0, Color.GREEN);
+			case 1001 : dummyShip = new Ship(0, 0, Color.RED);
+			case 1002 : dummyShip = new Ship(0, 0, Color.BLUE);
 		}
 		
 		if(lives == -99) {

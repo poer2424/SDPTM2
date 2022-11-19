@@ -121,9 +121,9 @@ public class Ship extends Entity {
 	public final void update() {
 
 		switch (Inventory.getcurrentship()) {
-			case 1000 -> setBaseColor(Color.GREEN);
-			case 1001 -> setBaseColor(Color.RED);
-			case 1002 -> setBaseColor(Color.BLUE);
+			case 1000 : setBaseColor(Color.GREEN);
+			case 1001 : setBaseColor(Color.RED);
+			case 1002 : setBaseColor(Color.BLUE);
 		}
 
 		// Item acquired additional image
