@@ -330,6 +330,7 @@ public class GameScreen extends Screen {
 	private void draw() {
 		drawManager.initDrawing(this);
 		drawManager.drawEntity(this.ship, this.ship.getPositionX(), this.ship.getPositionY());
+		drawManager.drawEntity(this.SmallPet, this.SmallPet.getPositionX(), this.SmallPet.getPositionY());
 		if (this.ship.item_number == 1){
 			drawManager.drawimg("item_heart", this.ship.getPositionX()+15, this.ship.getPositionY()-25, 33, 33);
 		}
