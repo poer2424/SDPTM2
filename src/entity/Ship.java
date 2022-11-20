@@ -34,7 +34,7 @@ public class Ship extends Entity {
 	/** Minimum time between shots. */
 	private Cooldown shootingCooldown;
 	/** Time spent inactive between hits. */
-	private Cooldown destructionCooldown;
+	public static Cooldown destructionCooldown;
 	/** Item acquire effect duration time. */
 	private Cooldown itemCooldown;
 	/** Movement of the ship for each unit of time. */

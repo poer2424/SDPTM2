@@ -1,15 +1,12 @@
 package entity;
 
 import java.awt.Color;
-import java.util.Arrays;
 import java.util.Set;
 
 import engine.Cooldown;
 import engine.Core;
-import engine.Inventory;
 import engine.DrawManager.SpriteType;
 import engine.Sound;
-
 public class SmallPet extends Entity {
 	/** Time between shots. */
 	private int SHOOTING_INTERVAL = 750;
@@ -108,22 +105,29 @@ public class SmallPet extends Entity {
 	/**
 	 * Updates status of the ship.
 	 */
-	private Color[] rainbowEffect = {Color.RED, Color.ORANGE, Color.YELLOW, Color.green, Color.blue, new Color(0, 0, 128), new Color(139, 0, 255)};
+
 	public final void update() {
-
-		setBaseColor(Color.green);
-
-
-		frameCnt = 0;
-		setColor(baseColor);
-		this.spriteType = SpriteType.SmallPet;
+		setBaseColor(Color.GREEN);
+		if(!Ship.destructionCooldown.checkFinished()){
+			frameCnt++;
+			if (frameCnt % (destructCool * 0.01) == 0) {
+				if (getColor() == baseColor) {
+					this.spriteType = SpriteType.ShipDestroyed;
+					setColor(Color.red);
+				} else {
+					setColor(baseColor);
+					this.spriteType = SpriteType.SmallPet;
+				}
+			}
+		} else{
+			frameCnt = 0;
+			setColor(baseColor);
+			this.spriteType = SpriteType.SmallPet;
+		}
 	}
 
 	public final void setBaseColor(Color newColor){
 		baseColor=newColor;
-	}
-	public final void getItem() {
-		this.getItem = true;
 	}
 
 	public final void gameOver() {
