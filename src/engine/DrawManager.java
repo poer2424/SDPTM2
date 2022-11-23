@@ -54,6 +54,7 @@ public final class DrawManager {
 	private static Graphics graphics;
 	/**
 	 * Buffer Graphics.
+	 *
 	 */
 	private static Graphics backBufferGraphics;
 	/**
@@ -68,6 +69,9 @@ public final class DrawManager {
 	/**
 	 * Normal sized font properties.
 	 */
+
+
+
 	private static FontMetrics fontRegularMetrics;
 	private static FontMetrics fontRegular2Metrics;
 	/**
@@ -173,7 +177,7 @@ public final class DrawManager {
 	private DrawManager() {
 		fileManager = Core.getFileManager();
 		logger = Core.getLogger();
-		logger.info("Started loading resource,s.");
+		logger.info("Started loading resources.");
 
 		try {
 			spriteMap = new LinkedHashMap<SpriteType, boolean[][]>();
@@ -211,9 +215,9 @@ public final class DrawManager {
 			imagemap.put("macarona", fileManager.loadImage("macarona.png"));
 			imagemap.put("coin", fileManager.loadImage("coin.png"));
 			imagemap.put("sel", fileManager.loadImage("selected.png"));
-			imagemap.put("ship1", fileManager.loadImage("ship3_front.png"));
-			imagemap.put("ship2", fileManager.loadImage("Default_ship_front.png"));
-			imagemap.put("ship3", fileManager.loadImage("ship2_front.png"));
+			imagemap.put("shipr", fileManager.loadImage("shipred.png"));
+			imagemap.put("shipg", fileManager.loadImage("shipgreen.png"));
+			imagemap.put("shipb", fileManager.loadImage("shipblue.png"));
 			imagemap.put("bgm1", fileManager.loadImage("bgm_1.png"));
 			imagemap.put("bgm2", fileManager.loadImage("bgm_2.png"));
 			imagemap.put("bgm3", fileManager.loadImage("bgm_3.png"));
@@ -239,6 +243,7 @@ public final class DrawManager {
 			instance = new DrawManager();
 		return instance;
 	}
+
 
 
 	/**
@@ -300,58 +305,14 @@ public final class DrawManager {
 	 * @param positionY Coordinates for the upper side of the image.
 	 */
 	public void drawEntity(final Entity entity, final int positionX,
-	final int positionY) {
-	fileManager = Core.getFileManager();
-	logger = Core.getLogger();
-
-	boolean[][] image = spriteMap.get(entity.getSpriteType());
-
-	if (entity.getSpriteType() == SpriteType.ShipCustom
-			|| entity.getSpriteType() == SpriteType.ShipCustomDestroyed) {
-		switch (((Ship) entity).imageid) {
-			case 1:
-				try {
-					// ((Ship)entity).imageid; //hash-map!
-					switch (((Ship) entity).animctr) {
-						case 1 -> Dummy_icon = imagemap.put("Default_ship_front", fileManager.loadImage("Default_ship_front.png"));
-						case 2 -> Dummy_icon = imagemap.put("Default_ship_left", fileManager.loadImage("Default_ship_left.png"));
-						case 3 -> Dummy_icon = imagemap.put("Default_ship_right", fileManager.loadImage("Default_ship_right.png"));
-						default -> Dummy_icon = imagemap.put("Default_ship_front", fileManager.loadImage("Default_ship_front.png"));
-					}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-				break;
-			case 2:
-				try {
-					// ((Ship)entity).imageid; //hash-map!
-					switch (((Ship) entity).animctr) {
-						case 1 -> Dummy_icon = imagemap.put("ship2_front", fileManager.loadImage("ship2_front.png"));
-						case 2 -> Dummy_icon = imagemap.put("ship2_left", fileManager.loadImage("ship2_left.png"));
-						case 3 -> Dummy_icon = imagemap.put("ship2_right", fileManager.loadImage("ship2_right.png"));
-						default -> Dummy_icon = imagemap.put("ship2_front", fileManager.loadImage("ship2_front.png"));
-					}
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				break;
-			case 3:
-				try {
-					// ((Ship)entity).imageid; //hash-map!
-					switch ((((Ship) entity).animctr)) {
-						case 1 -> Dummy_icon = imagemap.put("ship3_front", fileManager.loadImage("ship3_front.png"));
-						case 2 -> Dummy_icon = imagemap.put("ship3_left", fileManager.loadImage("ship3_left.png"));
-						case 3 -> Dummy_icon = imagemap.put("ship3_right", fileManager.loadImage("ship3_right.png"));
-						default -> Dummy_icon = imagemap.put("ship3_front", fileManager.loadImage("ship3_front.png"));
-					}
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				break;
-
-		}
-		backBufferGraphics.drawImage(Dummy_icon, positionX, positionY - 40, 40, 40, observer);
-		return;
+						   final int positionY) {
+		boolean[][] image = spriteMap.get(entity.getSpriteType());
+		backBufferGraphics.setColor(entity.getColor());
+		for (int i = 0; i < image.length; i++)
+			for (int j = 0; j < image[i].length; j++)
+				if (image[i][j])
+					backBufferGraphics.drawRect(positionX + i * 2, positionY
+							+ j * 2, 1, 1);
 	}
 
 	public void drawimg(String name, int positionX, int positionY, int sizex, int sizey) {
@@ -441,7 +402,12 @@ public final class DrawManager {
 		backBufferGraphics.setFont(fontRegular);
 		backBufferGraphics.setColor(Color.WHITE);
 		String coinString = String.format("%04d", coin);
-		drawimg("coin", screen.getWidth() - 260, 8, 22, 22);
+		try {
+			coin_icon = ImageIO.read(new File("icon\\coin-icon.png\\"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		backBufferGraphics.drawImage(coin_icon, 180, 8, 22, 22, observer);
 		backBufferGraphics.drawString(coinString, screen.getWidth() - 232, 25);
 	}
 
@@ -457,9 +423,9 @@ public final class DrawManager {
 		
 		Ship dummyShip = null;
 		switch (Inventory.getcurrentship()) {
-			case 1000 : dummyShip = new Ship(0, 0, Color.GREEN);
-			case 1001 : dummyShip = new Ship(0, 0, Color.RED);
-			case 1002 : dummyShip = new Ship(0, 0, Color.BLUE);
+			case 1000 -> dummyShip = new Ship(0, 0, Color.GREEN);
+			case 1001 -> dummyShip = new Ship(0, 0, Color.RED);
+			case 1002 -> dummyShip = new Ship(0, 0, Color.BLUE);
 		}
 		
 		if(lives == -99) {
