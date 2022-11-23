@@ -177,9 +177,9 @@ public class GameScreen extends Screen {
 		/** You can add your Ship to the code below. */
 
 		switch (Inventory.getcurrentship()) {
-			case 1000 -> this.ship = new Ship(this.width / 2, this.height - 30, Color.GREEN);
-			case 1001 -> this.ship = new Ship(this.width / 2, this.height - 30, Color.RED);
-			case 1002 -> this.ship = new Ship(this.width / 2, this.height - 30, Color.BLUE);
+			case 1000 : this.ship = new Ship(this.width / 2, this.height - 30, Color.GREEN);
+			case 1001 : this.ship = new Ship(this.width / 2, this.height - 30, Color.RED);
+			case 1002 : this.ship = new Ship(this.width / 2, this.height - 30, Color.BLUE);
 		}
 
 		// Appears each 10-30 seconds.
