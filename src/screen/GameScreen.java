@@ -138,6 +138,8 @@ public class GameScreen extends Screen {
 
 	private Set<entity.Item> items;
 
+	private static boolean setSmallPet = false;
+
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 *
@@ -236,26 +238,29 @@ public class GameScreen extends Screen {
 						+ this.ship.getWidth() + this.ship.getSpeed() > this.width - 1;
 				boolean isLeftBorder_ship = this.ship.getPositionX()
 						- this.ship.getSpeed() < 1;
-
 				boolean isRightBorder_smallpet = this.SmallPet.getPositionX()
 						+ this.SmallPet.getWidth() + this.SmallPet.getSpeed() > this.width - 1;
 				boolean isLeftBorder_smallpet = this.SmallPet.getPositionX()
 						- this.SmallPet.getSpeed() < 1;
 
-
 				if (moveRight && !isRightBorder_ship && !isRightBorder_smallpet){
 					this.ship.moveRight();
-					this.SmallPet.moveRight();
 				}
+				if (moveRight && setSmallPet && !isRightBorder_smallpet && !isRightBorder_ship)
+					this.SmallPet.moveRight();
 				if (moveLeft && !isLeftBorder_ship && !isLeftBorder_smallpet) {
 					this.ship.moveLeft();
+				}
+				if (moveLeft && setSmallPet && !isLeftBorder_smallpet && !isLeftBorder_ship) {
 					this.SmallPet.moveLeft();
 				}
 				if (inputManager.isKeyDown(KeyEvent.VK_SPACE))
 					if (this.ship.shoot(this.bullets))
 						this.bulletsShot++;
-				if (this.SmallPet.shoot(this.bullets))
-					this.bulletsShot++;
+				if(setSmallPet){
+					if (this.SmallPet.shoot(this.bullets))
+						this.bulletsShot++;
+				}
 
 				if (moveLeft)
 					ship.animctr = 2;
@@ -330,7 +335,8 @@ public class GameScreen extends Screen {
 	private void draw() {
 		drawManager.initDrawing(this);
 		drawManager.drawEntity(this.ship, this.ship.getPositionX(), this.ship.getPositionY());
-		drawManager.drawEntity(this.SmallPet, this.SmallPet.getPositionX(), this.SmallPet.getPositionY());
+		if(setSmallPet)
+			drawManager.drawEntity(this.SmallPet, this.SmallPet.getPositionX(), this.SmallPet.getPositionY());
 		if (this.ship.item_number == 1){
 			drawManager.drawimg("item_heart", this.ship.getPositionX()+15, this.ship.getPositionY()-25, 33, 33);
 		}
@@ -633,13 +639,14 @@ public class GameScreen extends Screen {
 					this.ship.item_number = 2;
 					this.ship.itemimgGet();
 				}
-				else if (per == 2) {
-					int shipSpeed = (int) (ship.getSPEED() + 1);
-					ship.setSPEED(shipSpeed);
-					this.logger.info("Acquire a item_shipSpeedUp," + shipSpeed + " Movement of the ship for each unit of time.");
-					this.ship.item_number = 3;
-					this.ship.itemimgGet();
-				}else if (per == 3) {
+//				else if (per == 2) {
+//					int shipSpeed = (int) (ship.getSPEED() + 1);
+//					ship.setSPEED(shipSpeed);
+//					this.logger.info("Acquire a item_shipSpeedUp," + shipSpeed + " Movement of the ship for each unit of time.");
+//					this.ship.item_number = 3;
+//					this.ship.itemimgGet();
+//				}
+				else if (per == 3) {
 					bullets.add(BulletPool.getBullet(ship.getPositionX(),
 							ship.getPositionY(), ship.getBULLET_SPEED(), 0));
 					bullets.add(BulletPool.getBullet(ship.getPositionX() + shipWidth/2,
@@ -655,7 +662,10 @@ public class GameScreen extends Screen {
 					bullets.add(BulletPool.getBullet(ship.getPositionX() + shipWidth/2,
 							ship.getPositionY()+shipWidth, ship.getBULLET_SPEED(), 0));
 					this.logger.info("Three bullets");
-				}else {
+				}else if (per == 5){
+					setSmallPet = true;
+					this.logger.info("WE HAVE NICE FRIENDS!");
+				} else {
 					bullets.add(BulletPool.getBullet(ship.getPositionX() - shipWidth / 2,
 							ship.getPositionY(), ship.getBULLET_SPEED(), 0));
 					bullets.add(BulletPool.getBullet(ship.getPositionX(),

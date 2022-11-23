@@ -79,7 +79,7 @@ public class Ship extends Entity {
 				break;
 		}
 	}
-	
+
 	/**
 	 * Moves the ship speed units right, or until the right screen border is
 	 * reached.
@@ -235,4 +235,6 @@ public class Ship extends Entity {
 		return SPEED;
 	}
 	public int getBULLET_SPEED() {return BULLET_SPEED;}
+
+
 }
