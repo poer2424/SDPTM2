@@ -3,7 +3,6 @@ package entity;
 import java.awt.Color;
 
 import engine.DrawManager.SpriteType;
-import engine.GameState;
 
 /**
  * Implements a bullet that moves vertically up or down.
@@ -32,7 +31,7 @@ public class Bullet extends Entity {
 	 *            direction - positive is down.
 	 */
 	public Bullet(final int positionX, final int positionY, final int speed, int shotPattern) {
-		super(positionX, positionY, 3 * 2, 5 * 3, Color.RED);
+		super(positionX, positionY, 3 * 2, 5 * 2, Color.WHITE);
 
 		this.speed = speed;
 		this.shooting_pattern = shotPattern;
@@ -61,9 +60,9 @@ public class Bullet extends Entity {
 
 	public final void movePosX() {
 		if (this.shooting_pattern == 1)
-			this.positionX += (this.speed%2+1);
+			this.positionX += (this.speed%10000+1);
 		else if (this.shooting_pattern == 2)
-			this.positionX -= (this.speed%2+1);
+			this.positionX -= (this.speed%10000+1);
 	}
 
 	/**

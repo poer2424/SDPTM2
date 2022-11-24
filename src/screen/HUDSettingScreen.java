@@ -34,7 +34,7 @@ public class HUDSettingScreen extends Screen {
     public HUDSettingScreen(final int width, final int height, final int fps) {
         super(width, height, fps);
         this.colorchange = 1;
-        this.returnCode = 4;
+        this.returnCode = 1;
 
         this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
         this.selectionCooldown.reset();
@@ -74,7 +74,6 @@ public class HUDSettingScreen extends Screen {
             }
             if (inputManager.isKeyDown(KeyEvent.VK_SPACE))
                 this.isRunning = false;
-                this.returnCode = 4;
 
         }
     }

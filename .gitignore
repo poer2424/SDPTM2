@@ -50,14 +50,14 @@
 # When using Gradle or Maven with auto-import, you should exclude module files,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
-.idea/artifacts
-.idea/compiler.xml
-.idea/jarRepositories.xml
-.idea/modules.xml
-.idea/*.iml
-.idea/modules
-*.iml
-*.ipr
+# .idea/artifacts
+# .idea/compiler.xml
+# .idea/jarRepositories.xml
+# .idea/modules.xml
+# .idea/*.iml
+# .idea/modules
+# *.iml
+# *.ipr
 
 # CMake
 cmake-build-*/
@@ -107,8 +107,7 @@ fabric.properties
 ### Java ###
 # Compiled class file
 *.class
-.classpath
-.project
+
 # Log file
 *.log
 
@@ -209,10 +208,3 @@ $RECYCLE.BIN/
 #
 # Cusotmized by Hansae Ju
 log
-log.*
-/bin/
-.classpath
-.project
-scores
-log.1
-log.1
