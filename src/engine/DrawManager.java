@@ -117,11 +117,15 @@ public final class DrawManager {
 		 * Player bullet.
 		 */
 		Bullet,
-		/** Enemy bullets. */
+		/**
+		 * Enemy bullets.
+		 */
 		EnemyBullet,
 		EnemyBulletN,
 		EnemyBulletH,
-		/** First enemy ship - first form. */
+		/**
+		 * First enemy ship - first form.
+		 */
 		EnemyShipA1,
 		/**
 		 * First enemy ship - second form.
@@ -147,25 +151,41 @@ public final class DrawManager {
 		 * Bonus ship.
 		 */
 		EnemyShipSpecial,
-		/** Destroyed enemy ship - first form. */
+		/**
+		 * Destroyed enemy ship - first form.
+		 */
 		Explosion,
-		/** Destroyed enemy ship - second form. */
+		/**
+		 * Destroyed enemy ship - second form.
+		 */
 		Explosion2,
-		/** Destroyed enemy ship - third form. */
+		/**
+		 * Destroyed enemy ship - third form.
+		 */
 		Explosion3,
-		/** Destroyed enemy ship - fourth form. */
+		/**
+		 * Destroyed enemy ship - fourth form.
+		 */
 		Explosion4,
-		/** Custom Ship Image */
+		/**
+		 * Custom Ship Image
+		 */
 		ShipCustom,
 		/**
 		 * Custom Ship Image
 		 */
 		ShipCustomDestroyed,
-		/** dropped item */
+		/**
+		 * dropped item
+		 */
 		Item,
-		/** Current Ship Lives */
+		/**
+		 * Current Ship Lives
+		 */
 		ShipLive;
-	};
+	}
+
+	;
 
 	/**
 	 * Private constructor.
@@ -257,6 +277,7 @@ public final class DrawManager {
 	 * @param screen Screen to draw in.
 	 */
 	Color[] bg_colors = {Color.LIGHT_GRAY, Color.GRAY, Color.DARK_GRAY};
+
 	public void initDrawing(final Screen screen) {
 		backBuffer = new BufferedImage(screen.getWidth(), screen.getHeight(),
 				BufferedImage.TYPE_INT_RGB);
@@ -264,10 +285,9 @@ public final class DrawManager {
 		graphics = frame.getGraphics();
 		backBufferGraphics = backBuffer.getGraphics();
 
-		if(GameScreen.lives > 0 && GameScreen.lives <= 3){
+		if (GameScreen.lives > 0 && GameScreen.lives <= 3) {
 			backBufferGraphics.setColor(bg_colors[3 - GameScreen.lives]);
-		}
-		else{
+		} else {
 			backBufferGraphics.setColor(Color.BLACK);
 		}
 
@@ -361,36 +381,35 @@ public final class DrawManager {
       	String scoreString = String.format("%04d", score);
       	backBufferGraphics.drawString(scoreString, screen.getWidth() - 60, 25);
       	*/
-      	backBufferGraphics.setFont(fontRegular);
-      	backBufferGraphics.setColor(Color.WHITE);
+		backBufferGraphics.setFont(fontRegular);
+		backBufferGraphics.setColor(Color.WHITE);
 
-      	String scoreString = "";
+		String scoreString = "";
 
-      	//implementation of logic
-      	fileManager = Core.getFileManager();
-      	List<Score> highScores;
-      	try {
-         	highScores = fileManager.loadHighScores();
-         	int max = -1;
-      		for(int i = 0; i < highScores.size(); i++) {
-         		if(max < highScores.get(i).getScore()) {
-            		max = highScores.get(i).getScore();
-         		}
-      		}
+		//implementation of logic
+		fileManager = Core.getFileManager();
+		List<Score> highScores;
+		try {
+			highScores = fileManager.loadHighScores();
+			int max = -1;
+			for (int i = 0; i < highScores.size(); i++) {
+				if (max < highScores.get(i).getScore()) {
+					max = highScores.get(i).getScore();
+				}
+			}
 
-    		if(max < score) {
-         		scoreString = "new score : ";
-         		scoreString += String.format("%04d", score);
-      		}
-      		else {
-         		scoreString = "score : ";
-        		scoreString += String.format("%04d", score);
-    		}
-    	} catch (IOException e) {
-    		e.printStackTrace();
-    	}
-      
-    	backBufferGraphics.drawString(scoreString, screen.getWidth() - 167, 25);
+			if (max < score) {
+				scoreString = "new score : ";
+				scoreString += String.format("%04d", score);
+			} else {
+				scoreString = "score : ";
+				scoreString += String.format("%04d", score);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		backBufferGraphics.drawString(scoreString, screen.getWidth() - 167, 25);
 	}
 
 	public void drawCoin(final Screen screen, final int coin) {
@@ -410,16 +429,16 @@ public final class DrawManager {
 	public void drawLives(final Screen screen, final int lives) {
 		backBufferGraphics.setFont(fontRegular);
 		backBufferGraphics.setColor(Color.WHITE);
-		
+
 		Ship dummyShip = null;
 		switch (Inventory.getcurrentship()) {
 			case 1000 -> dummyShip = new Ship(0, 0, Color.GREEN);
 			case 1001 -> dummyShip = new Ship(0, 0, Color.RED);
 			case 1002 -> dummyShip = new Ship(0, 0, Color.BLUE);
 		}
-		
-		if(lives == -99) {
-			backBufferGraphics.drawString("Infin.", 20, 25);	
+
+		if (lives == -99) {
+			backBufferGraphics.drawString("Infin.", 20, 25);
 			drawEntity(dummyShip, 40 + 35, 10);
 		} else {
 			backBufferGraphics.drawString(Integer.toString(lives), 20, 25);
@@ -997,7 +1016,6 @@ public final class DrawManager {
 	}
 
 
-
 	/**
 	 * Draws a centered string on big font.
 	 *
@@ -1135,7 +1153,7 @@ public final class DrawManager {
 	}
 
 	public void drawShopModal(Screen screen, String item_name, String item_price, engine.DrawManager.shopmodaltype mode,
-			int modaloption) {
+							  int modaloption) {
 		int winw = backBuffer.getWidth() * 8 / 10;
 		int winh = backBuffer.getHeight() * 8 / 10;
 		int winxbase = (backBuffer.getWidth() - winw) / 2;
@@ -1184,9 +1202,10 @@ public final class DrawManager {
 		backBufferGraphics.setColor((Color.WHITE));
 		backBufferGraphics.drawRect(winxbase, winybase, winw, winh);
 		backBufferGraphics.drawRect(winxbase + 5, winybase + 5, winw - 10, winh - 10);
-		drawCenteredBigString(screen, text, winybase * 3 / 2) ;
+		drawCenteredBigString(screen, text, winybase * 3 / 2);
 		backBufferGraphics.setColor(Color.GREEN);
-		drawCenteredRegularString(screen, "OK", winybase * 2); ;
+		drawCenteredRegularString(screen, "OK", winybase * 2);
+		;
 	}
 
 	public void drawSelectIcon_ship(Screen screen, int x, int y) {
@@ -1229,7 +1248,8 @@ public final class DrawManager {
 			offset += fontRegularMetrics.getHeight();
 		}
 	}
-	public void drawLevelMenu(final Screen screen, final int option) {
+
+	public void drawLevelMenu(Screen screen, int option) {
 		String levelString = "LEVEL";
 		String instructionsString = "Press Space to return";
 		String level1 = "EASY:";
@@ -1240,47 +1260,117 @@ public final class DrawManager {
 		String stage3 = "3";
 		String stage4 = "4";
 		String stage5 = "5";
-
 		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
-		drawCenteredBigString(screen, levelString, screen.getHeight() / 8);
-
+		this.drawCenteredBigString(screen, levelString, screen.getHeight() / 8);
 		backBufferGraphics.setColor(Color.GRAY);
-		drawCenteredRegularString(screen, instructionsString, screen.getHeight() / 5);
-
-		if (option == 1)
-			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
-		else
-			backBufferGraphics.setColor(Color.WHITE);
-
+		this.drawCenteredRegularString(screen, instructionsString, screen.getHeight() / 5);
 		backBufferGraphics.drawString(level1, 13, 220);
-		backBufferGraphics.drawString(stage1, 150, 220);
-		backBufferGraphics.drawString(stage2, 210, 220);
-		backBufferGraphics.drawString(stage3, 270, 220);
-		backBufferGraphics.drawString(stage4, 330, 220);
-		backBufferGraphics.drawString(stage5, 390, 220);
-
-		if (option == 2)
-			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
-		else
-			backBufferGraphics.setColor(Color.WHITE);
 		backBufferGraphics.drawString(level2, 13, 280);
-		backBufferGraphics.drawString(stage1, 150, 280);
-		backBufferGraphics.drawString(stage2, 210, 280);
-		backBufferGraphics.drawString(stage3, 270, 280);
-		backBufferGraphics.drawString(stage4, 330, 280);
-		backBufferGraphics.drawString(stage5, 390, 280);
-
-		if (option == 3)
-			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
-		else
-			backBufferGraphics.setColor(Color.WHITE);
 		backBufferGraphics.drawString(level3, 13, 340);
-		backBufferGraphics.drawString(stage1, 150, 340);
-		backBufferGraphics.drawString(stage2, 210, 340);
-		backBufferGraphics.drawString(stage3, 270, 340);
-		backBufferGraphics.drawString(stage4, 330, 340);
-		backBufferGraphics.drawString(stage5, 390, 340);
+		if (option == 101) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
 
+		backBufferGraphics.drawString(stage1, 150, 220);
+		if (option == 102) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(stage2, 210, 220);
+		if (option == 103) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(stage3, 270, 220);
+		if (option == 104) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(stage4, 330, 220);
+		if (option == 105) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(stage5, 390, 220);
+		if (option == 201) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(stage1, 150, 280);
+		if (option == 202) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(stage2, 210, 280);
+		if (option == 203) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(stage3, 270, 280);
+		if (option == 204) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(stage4, 330, 280);
+		if (option == 205) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(stage5, 390, 280);
+		if (option == 301) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(stage1, 150, 340);
+		if (option == 302) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(stage2, 210, 340);
+		if (option == 303) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(stage3, 270, 340);
+		if (option == 304) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(stage4, 330, 340);
+		if (option == 305) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(stage5, 390, 340);
 	}
 }
-
