@@ -62,6 +62,8 @@ public class LevelScreen extends Screen {
         } else if (this.returnCode == 201) {
             this.returnCode = 301;
         } else if (this.returnCode == 301) {
+            this.returnCode = 401;
+        } else if (this.returnCode == 401) {
             this.returnCode = 101;
         } else if (this.returnCode == 102) {
             this.returnCode = 202;
@@ -95,6 +97,8 @@ public class LevelScreen extends Screen {
 
     private void previouslevel() {
         if (this.returnCode == 101) {
+            this.returnCode = 401;
+        } else if (this.returnCode == 401) {
             this.returnCode = 301;
         } else if (this.returnCode == 301) {
             this.returnCode = 201;

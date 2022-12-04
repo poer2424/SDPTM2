@@ -1259,6 +1259,7 @@ public final class DrawManager {
 		String stage3 = "3";
 		String stage4 = "4";
 		String stage5 = "5";
+		String tutorial = "TUTORIAL";
 		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
 		this.drawCenteredBigString(screen, levelString, screen.getHeight() / 8);
 		backBufferGraphics.setColor(Color.GRAY);
@@ -1371,5 +1372,12 @@ public final class DrawManager {
 		}
 
 		backBufferGraphics.drawString(stage5, 390, 340);
+		if (option == 401) {
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+
+		backBufferGraphics.drawString(tutorial, 180, 420);
 	}
 }
