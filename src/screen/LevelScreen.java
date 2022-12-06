@@ -9,7 +9,6 @@ import engine.Cooldown;
 import engine.Core;
 
 public class LevelScreen extends Screen {
-    public static int colorchange;
     private static final int SELECTION_TIME = 200;
     private Cooldown selectionCooldown;
 
