@@ -431,9 +431,9 @@ public final class DrawManager {
 
 		Ship dummyShip = null;
 		switch (Inventory.getcurrentship()) {
-			case 1000 -> dummyShip = new Ship(0, 0, Color.GREEN);
-			case 1001 -> dummyShip = new Ship(0, 0, Color.RED);
-			case 1002 -> dummyShip = new Ship(0, 0, Color.BLUE);
+			case 1000 : dummyShip = new Ship(0, 0, Color.GREEN);
+			case 1001 : dummyShip = new Ship(0, 0, Color.RED);
+			case 1002 : dummyShip = new Ship(0, 0, Color.BLUE);
 		}
 
 		if (lives == -99) {
@@ -475,6 +475,20 @@ public final class DrawManager {
 		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
 	}
+
+	/* Test method
+	public void drawTutorial(final Screen screen) {
+		String titleString = "Tutorial";
+		String instructionsString = "select with w+s / arrows, confirm with space";
+
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, instructionsString,
+				screen.getHeight() / 2);
+
+		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
+	}
+	*/
 
 	/**
 	 * Draws main menu.
