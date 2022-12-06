@@ -483,7 +483,7 @@ public final class DrawManager {
 	}
 
 
-	public void drawTutorial(final Screen screen, int count) {
+	public void drawTutorial(final Screen screen, int returncode, int count) {
 		String titleString = "Tutorial";
 		String instructionsString = "Press Space to next Screen";
 		String inforString = "";
@@ -510,7 +510,7 @@ public final class DrawManager {
 		}
 		else if(count == 4) {
 			// space를 4번 눌렀을 때, practiceScreen으로 이동
-
+			returncode = 50;
 		}
 
 		backBufferGraphics.setColor(Color.GRAY);

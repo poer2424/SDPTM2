@@ -243,7 +243,7 @@ public final class Core {
 				LOGGER.info("Closing title screen.");
 				break;
 			case 2:
-				//level
+				//select
 				currentScreen = new SelectScreen(width, height, FPS);
 				LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 						+ " setting screen at " + FPS + " fps.");
@@ -251,7 +251,15 @@ public final class Core {
 				LOGGER.info("Closing setting screen.");
 				break;
 
-				case 12:
+			case 12:
+				currentScreen = new InformationScreen(width, height, FPS);
+				LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
+						+ " setting screen at " + FPS + " fps.");
+				returnCode = frame.setScreen(currentScreen);
+				LOGGER.info("Closing setting screen.");
+				break;
+
+				case 50:
 					gameState = new GameState(1, 0, MAX_LIVES, 0, 0, Coin.balance);
 					diff = 0;
 					if(diff == 0) {
