@@ -252,12 +252,29 @@ public final class Core {
 				break;
 
 			case 12:
-				currentScreen = new InformationScreen(width, height, FPS);
+				currentScreen = new Infor1Screen(width, height, FPS);
 				LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 						+ " setting screen at " + FPS + " fps.");
 				returnCode = frame.setScreen(currentScreen);
 				LOGGER.info("Closing setting screen.");
 				break;
+
+			case 112:
+				currentScreen = new Infor2Screen(width, height, FPS);
+				LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
+						+ " setting screen at " + FPS + " fps.");
+				returnCode = frame.setScreen(currentScreen);
+				LOGGER.info("Closing setting screen.");
+				break;
+
+			case 113:
+				currentScreen = new Infor3Screen(width, height, FPS);
+				LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
+						+ " setting screen at " + FPS + " fps.");
+				returnCode = frame.setScreen(currentScreen);
+				LOGGER.info("Closing setting screen.");
+			    break;
+
 
 				case 50:
 					gameState = new GameState(1, 0, MAX_LIVES, 0, 0, Coin.balance);

@@ -26,7 +26,7 @@ public class Infor1Screen extends Screen {
         draw();
         if (this.selectionCooldown.checkFinished() && this.inputDelay.checkFinished()) {
             if (this.inputManager.isKeyDown(32)) {
-                this.returnCode = 112;
+                this.isRunning = false;
             }
         }
     }

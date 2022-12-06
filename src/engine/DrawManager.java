@@ -485,10 +485,8 @@ public final class DrawManager {
 	public void drawInfor1(final Screen screen, final int option) {
 		String titleString = "Tutorial";
 		String instructionsString = "Press Space to next Screen";
-		String inforString = "If you want to move, press the arrow key.";
+		String inforString1 = "If you want to move, press the arrow key.";
 
-		drawCenteredRegularString(screen, inforString,
-					screen.getHeight() / 3 * 2);
 
 		backBufferGraphics.setColor(Color.GRAY);
 		drawCenteredRegularString(screen, instructionsString,
@@ -496,16 +494,18 @@ public final class DrawManager {
 
 		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
+
+		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		drawCenteredRegularString(screen, inforString1,
+				screen.getHeight() / 3 * 2);
 
 	}
 
 	public void drawInfor2(final Screen screen, final int option) {
 		String titleString = "Tutorial";
 		String instructionsString = "Press Space to next Screen";
-		String inforString = "If you press space, you can attack.";
+		String inforString2 = "If you press space, you can attack.";
 
-		drawCenteredRegularString(screen, inforString,
-				screen.getHeight() / 3 * 2);
 
 		backBufferGraphics.setColor(Color.GRAY);
 		drawCenteredRegularString(screen, instructionsString,
@@ -513,63 +513,34 @@ public final class DrawManager {
 
 		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
+
+		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		drawCenteredRegularString(screen, inforString2,
+				screen.getHeight() / 3 * 2);
 	}
 
 	public void drawInfor3(final Screen screen, final int option) {
 		String titleString = "Tutorial";
 		String instructionsString = "Press Space to next Screen";
-		String inforString = "If you catch an enemy, the item box will fall off with a random probability. See what happens when you eat the item box";
+		String inforString3_1 = "If you catch an enemy,";
+		String inforString3_2 = "item box will fall off with random probability.";
+		String inforString3_3 = " See what happens when you eat the item box";
 
-		drawCenteredRegularString(screen, inforString,
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, instructionsString,
+				screen.getHeight() / 2);
+
+		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
+		drawCenteredRegularString(screen, inforString3_1,
 				screen.getHeight() / 3 * 2);
-
-		backBufferGraphics.setColor(Color.GRAY);
-		drawCenteredRegularString(screen, instructionsString,
-				screen.getHeight() / 2);
-
-		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
-		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
+		drawCenteredRegularString(screen, inforString3_2,
+				screen.getHeight()
+						/ 3 * 2 + fontRegularMetrics.getHeight() * 2);
+		drawCenteredRegularString(screen, inforString3_3,
+				screen.getHeight() / 3
+						* 2 + fontRegularMetrics.getHeight() * 3);
 	}
-
-	public void drawTutorial(final Screen screen, int returncode, int count) {
-		String titleString = "Tutorial";
-		String instructionsString = "Press Space to next Screen";
-		String inforString = "";
-
-		//if(InformationScreen.count)
-		if(count == 1) {
-			// space를 한번만 눌렀을 때, 설명 1번 창 -> 방향키에 대해 설명\
-			inforString = "a";
-			drawCenteredRegularString(screen, inforString,
-					screen.getHeight() / 3 * 2);
-
-		}
-		else if(count == 2) {
-			// space를 2번 눌렀을 때, 설명 2번 창 -> 공격에 대해 설명
-			inforString = "b";
-			drawCenteredRegularString(screen, inforString,
-					screen.getHeight() / 3 * 2);
-		}
-		else if(count == 3) {
-			// space를 3번 눌렀을 때, 설명 3번 창 -> 아이템에 대해 설명
-			inforString = "c";
-			drawCenteredRegularString(screen, inforString,
-					screen.getHeight() / 3 * 2);
-		}
-		else if(count == 4) {
-			// space를 4번 눌렀을 때, practiceScreen으로 이동
-			returncode = 50;
-		}
-
-		backBufferGraphics.setColor(Color.GRAY);
-		drawCenteredRegularString(screen, instructionsString,
-				screen.getHeight() / 2);
-
-
-		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
-		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
-	}
-
 
 
 
