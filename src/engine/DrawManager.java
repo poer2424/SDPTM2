@@ -179,11 +179,17 @@ public final class DrawManager {
 		 * dropped item
 		 */
 		Item,
-		/** Current Ship Lives */
+		/**
+		 * Current Ship Lives
+		 */
 		ShipLive,
-		/** Small Pet Unit */
+		/**
+		 * Small Pet Unit
+		 */
 		SmallPet;
-	};
+	}
+
+	;
 
 	/**
 	 * Private constructor.
@@ -1386,12 +1392,35 @@ public final class DrawManager {
 		}
 
 		backBufferGraphics.drawString(stage5, 390, 340);
-		if (option == 401) {
-			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
-		} else {
-			backBufferGraphics.setColor(Color.WHITE);
-		}
+	}
 
-		backBufferGraphics.drawString(tutorial, 180, 420);
+	public void drawSelect(final Screen screen, final int option) {
+		String Levelstring = "Level";
+		String Tutorialstring = "Tutorial";
+		String SelectString = "Select";
+		String instructionsString = "Press Space to Save Changes";
+
+		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		drawCenteredBigString(screen, SelectString, screen.getHeight() / 8);
+
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, instructionsString, screen.getHeight() / 3);
+
+
+		// returnCode == 2 : play
+		if (option == 11)
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, Levelstring,
+				screen.getHeight()
+						/ 3 * 2);
+
+		if (option == 12)
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, Tutorialstring, screen.getHeight() / 3
+				* 2 + fontRegularMetrics.getHeight() * 3);
 	}
 }
