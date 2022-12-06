@@ -482,6 +482,54 @@ public final class DrawManager {
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
 	}
 
+	public void drawInfor1(final Screen screen, final int option) {
+		String titleString = "Tutorial";
+		String instructionsString = "Press Space to next Screen";
+		String inforString = "If you want to move, press the arrow key.";
+
+		drawCenteredRegularString(screen, inforString,
+					screen.getHeight() / 3 * 2);
+
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, instructionsString,
+				screen.getHeight() / 2);
+
+		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
+
+	}
+
+	public void drawInfor2(final Screen screen, final int option) {
+		String titleString = "Tutorial";
+		String instructionsString = "Press Space to next Screen";
+		String inforString = "If you press space, you can attack.";
+
+		drawCenteredRegularString(screen, inforString,
+				screen.getHeight() / 3 * 2);
+
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, instructionsString,
+				screen.getHeight() / 2);
+
+		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
+	}
+
+	public void drawInfor3(final Screen screen, final int option) {
+		String titleString = "Tutorial";
+		String instructionsString = "Press Space to next Screen";
+		String inforString = "If you catch an enemy, the item box will fall off with a random probability. See what happens when you eat the item box";
+
+		drawCenteredRegularString(screen, inforString,
+				screen.getHeight() / 3 * 2);
+
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, instructionsString,
+				screen.getHeight() / 2);
+
+		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
+	}
 
 	public void drawTutorial(final Screen screen, int returncode, int count) {
 		String titleString = "Tutorial";

@@ -33,7 +33,8 @@ public class InformationScreen extends Screen {
         super.update();
         this.draw();
         if (this.selectionCooldown.checkFinished() && this.inputDelay.checkFinished()) {
-            if (this.inputManager.isKeyDown(32)) {;
+            if (this.inputManager.isKeyDown(32)) {
+
             }
         }
 
