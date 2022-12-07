@@ -494,8 +494,6 @@ public final class DrawManager {
 
 		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
-
-		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
 		drawCenteredRegularString(screen, inforString1,
 				screen.getHeight() / 3 * 2);
 
@@ -514,8 +512,6 @@ public final class DrawManager {
 
 		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
-
-		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
 		drawCenteredRegularString(screen, inforString2,
 				screen.getHeight() / 3 * 2);
 
