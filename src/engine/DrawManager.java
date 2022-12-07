@@ -482,7 +482,7 @@ public final class DrawManager {
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
 	}
 
-	public void drawInfor1(final Screen screen, final int option) {
+	public int drawInfor1(final Screen screen, final int option) {
 		String titleString = "Tutorial";
 		String instructionsString = "Press Space to next Screen";
 		String inforString1 = "If you want to move, press the arrow key.";
@@ -494,14 +494,13 @@ public final class DrawManager {
 
 		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
-
-		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
 		drawCenteredRegularString(screen, inforString1,
 				screen.getHeight() / 3 * 2);
 
+		return option;
 	}
 
-	public void drawInfor2(final Screen screen, final int option) {
+	public int drawInfor2(final Screen screen, final int option) {
 		String titleString = "Tutorial";
 		String instructionsString = "Press Space to next Screen";
 		String inforString2 = "If you press space, you can attack.";
@@ -513,13 +512,13 @@ public final class DrawManager {
 
 		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
-
-		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
 		drawCenteredRegularString(screen, inforString2,
 				screen.getHeight() / 3 * 2);
+
+		return option;
 	}
 
-	public void drawInfor3(final Screen screen, final int option) {
+	public int drawInfor3(final Screen screen, final int option) {
 		String titleString = "Tutorial";
 		String instructionsString = "Press Space to next Screen";
 		String inforString3_1 = "If you catch an enemy,";
@@ -540,6 +539,8 @@ public final class DrawManager {
 		drawCenteredRegularString(screen, inforString3_3,
 				screen.getHeight() / 3
 						* 2 + fontRegularMetrics.getHeight() * 3);
+
+		return option;
 	}
 
 

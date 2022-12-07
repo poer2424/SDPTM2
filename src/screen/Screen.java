@@ -43,6 +43,10 @@ public class Screen {
 	/** What kind of screen goes next. */
 	protected int returnCode;
 
+	public int getReturnCode() {
+		return returnCode;
+	}
+
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 * 
