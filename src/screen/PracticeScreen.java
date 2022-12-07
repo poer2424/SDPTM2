@@ -110,9 +110,9 @@ public class PracticeScreen extends Screen {
 		enemyShipFormation.attach(this);
 		//this.ship = new Ship(this.width / 2, this.height - 30);
 		switch (Inventory.getcurrentship()) {
-			case 1000 -> this.ship = new Ship(this.width / 2, this.height - 30, Color.GREEN);
-			case 1001 -> this.ship = new Ship(this.width / 2, this.height - 30, Color.RED);
-			case 1002 -> this.ship = new Ship(this.width / 2, this.height - 30, Color.BLUE);
+			case 1000 : this.ship = new Ship(this.width / 2, this.height - 30, Color.GREEN);
+			case 1001 : this.ship = new Ship(this.width / 2, this.height - 30, Color.RED);
+			case 1002 : this.ship = new Ship(this.width / 2, this.height - 30, Color.BLUE);
 		}
 		// Appears each 10-30 seconds.
 		this.enemyShipSpecialCooldown = Core.getVariableCooldown(
@@ -285,7 +285,7 @@ public class PracticeScreen extends Screen {
 				if (checkCollision(bullet, this.ship) && !this.levelFinished) {
 					recyclable.add(bullet);
 					if (!this.ship.isDestroyed()) {
-						// ¶óÀÌÇÁ ¹«Àû
+						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						this.ship.destroy();
 						//this.lives--;
 						this.logger.info("Hit on player ship, But player is invincibility");

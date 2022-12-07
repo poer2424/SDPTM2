@@ -179,11 +179,17 @@ public final class DrawManager {
 		 * dropped item
 		 */
 		Item,
-		/** Current Ship Lives */
+		/**
+		 * Current Ship Lives
+		 */
 		ShipLive,
-		/** Small Pet Unit */
+		/**
+		 * Small Pet Unit
+		 */
 		SmallPet;
-	};
+	}
+
+	;
 
 	/**
 	 * Private constructor.
@@ -431,9 +437,9 @@ public final class DrawManager {
 
 		Ship dummyShip = null;
 		switch (Inventory.getcurrentship()) {
-			case 1000 -> dummyShip = new Ship(0, 0, Color.GREEN);
-			case 1001 -> dummyShip = new Ship(0, 0, Color.RED);
-			case 1002 -> dummyShip = new Ship(0, 0, Color.BLUE);
+			case 1000 : dummyShip = new Ship(0, 0, Color.GREEN);
+			case 1001 : dummyShip = new Ship(0, 0, Color.RED);
+			case 1002 : dummyShip = new Ship(0, 0, Color.BLUE);
 		}
 
 		if (lives == -99) {
@@ -475,6 +481,68 @@ public final class DrawManager {
 		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
 	}
+
+	public void drawInfor1(final Screen screen, final int option) {
+		String titleString = "Tutorial";
+		String instructionsString = "Press Space to next Screen";
+		String inforString1 = "If you want to move, press the arrow key.";
+
+
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, instructionsString,
+				screen.getHeight() / 2);
+
+		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
+
+		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		drawCenteredRegularString(screen, inforString1,
+				screen.getHeight() / 3 * 2);
+
+	}
+
+	public void drawInfor2(final Screen screen, final int option) {
+		String titleString = "Tutorial";
+		String instructionsString = "Press Space to next Screen";
+		String inforString2 = "If you press space, you can attack.";
+
+
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, instructionsString,
+				screen.getHeight() / 2);
+
+		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
+
+		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		drawCenteredRegularString(screen, inforString2,
+				screen.getHeight() / 3 * 2);
+	}
+
+	public void drawInfor3(final Screen screen, final int option) {
+		String titleString = "Tutorial";
+		String instructionsString = "Press Space to next Screen";
+		String inforString3_1 = "If you catch an enemy,";
+		String inforString3_2 = "item box will fall off with random probability.";
+		String inforString3_3 = " See what happens when you eat the item box";
+
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, instructionsString,
+				screen.getHeight() / 2);
+
+		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
+		drawCenteredRegularString(screen, inforString3_1,
+				screen.getHeight() / 3 * 2);
+		drawCenteredRegularString(screen, inforString3_2,
+				screen.getHeight()
+						/ 3 * 2 + fontRegularMetrics.getHeight() * 2);
+		drawCenteredRegularString(screen, inforString3_3,
+				screen.getHeight() / 3
+						* 2 + fontRegularMetrics.getHeight() * 3);
+	}
+
+
 
 	/**
 	 * Draws main menu.
@@ -1259,6 +1327,7 @@ public final class DrawManager {
 		String stage3 = "3";
 		String stage4 = "4";
 		String stage5 = "5";
+		String tutorial = "TUTORIAL";
 		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
 		this.drawCenteredBigString(screen, levelString, screen.getHeight() / 8);
 		backBufferGraphics.setColor(Color.GRAY);
@@ -1371,5 +1440,35 @@ public final class DrawManager {
 		}
 
 		backBufferGraphics.drawString(stage5, 390, 340);
+	}
+
+	public void drawSelect(final Screen screen, final int option) {
+		String Levelstring = "Level";
+		String Tutorialstring = "Tutorial";
+		String SelectString = "Select";
+		String instructionsString = "Press Space to Save Changes";
+
+		backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		drawCenteredBigString(screen, SelectString, screen.getHeight() / 8);
+
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, instructionsString, screen.getHeight() / 3);
+
+
+		// returnCode == 2 : play
+		if (option == 11)
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, Levelstring,
+				screen.getHeight()
+						/ 3 * 2);
+
+		if (option == 12)
+			backBufferGraphics.setColor(HUDSettingScreen.getScreenColor());
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, Tutorialstring, screen.getHeight() / 3
+				* 2 + fontRegularMetrics.getHeight() * 3);
 	}
 }
